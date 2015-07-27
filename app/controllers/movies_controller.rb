@@ -9,7 +9,7 @@ class MoviesController < ApplicationController
 	end
 
 	def new
-		@movies = Movie.new
+		@movie = Movie.new
 	end
 
 	def edit
@@ -38,7 +38,7 @@ class MoviesController < ApplicationController
 	protected
 
 	def movie_params
-		params.requrie(:movie).permit(
+		params.require(:movie).permit(
 			:title, :relase_date, :director, :runtime_in_minutes, :poster_image_url,
 		)
 	end
