@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id # auto log in
-      redirect_to movies_path, notice: "Welcome abroard, #{user.firstname}!"
+      redirect_to movies_path, notice: "Welcome abroard, #{@user.firstname}!"
     else
       render :new
     end
