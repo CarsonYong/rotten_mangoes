@@ -6,6 +6,7 @@
 <h4>Dir. <%= @movie.director %> | <%= @movie.runtime_in_minutes %> minutes</h4>
 <p><%= @movie.description %></p>
 <%= @movie.review_average %>/10
+<%= image_tag @movie.image_url(:small) if @movie.image? %>
 
 <hr>
 
