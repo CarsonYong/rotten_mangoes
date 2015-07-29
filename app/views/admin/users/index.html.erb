@@ -1,1 +1,14 @@
 <h1>Admin page</h1>
+
+<%= paginate  @users %>
+
+<% @users.each do |user| %>
+<table>
+  <tr>
+    <td>
+      <%= user.firstname %>
+
+    </td>  
+  <% end %>
+</tr>
+</table>
