@@ -7,6 +7,10 @@
   <%= text_field_tag :title %><br>
   <%= label_tag :director %>
   <%= text_field_tag :director %>
+  <%= label_tag "Duration" %>
+  <%= select_tag :runtime_in_minutes, options_for_select(@movietimes) %> 
+ 
+
   <%= submit_tag "Search" %>
 <% end %>
 
