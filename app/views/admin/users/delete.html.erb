@@ -1,0 +1,10 @@
+<h2>Delete this user</h2>
+
+<%= form_for [:admin, @user] do |f| %>
+  <%= render "shared/errors", object: @user %>
+  <div>
+    <%= f.label "Enter user's email" %><br>
+    <%= f.text_field "email" %>
+  </div>
+  <div><%= f.submit "Submit" %></div>
+<% end %>
