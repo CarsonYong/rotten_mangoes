@@ -3,11 +3,10 @@ class MoviesController < ApplicationController
 	def index
 		
 		@movies = Movie.all
-		if params.has_key?(:title)
+		if params.has_key?(:title) || params.has_key?(:director)
 			@movies = @movies.where("title like ?", "%#{params[:title]}%")
-				
-
-
+			@movies = @movies.where("director like? ", "%#{params[:director]}%")
+							
 		end
 	end
 
