@@ -41,6 +41,8 @@ gem 'mini_magick'
 
 gem 'kaminari'
 
+gem 'byebug'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 
