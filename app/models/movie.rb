@@ -20,6 +20,24 @@ class Movie < ActiveRecord::Base
       reviews.sum(:rating_out_of_ten)/reviews.size
     end
   end
+
+  def self.by_duration(duration)
+    if duration == "Under 90 minutes"
+        self.where("runtime_in_minutes < 90 ", "%#{duration}%")
+      elsif duration == "Between 90 and 120 minutes"
+        where("runtime_in_minutes >= 90 AND runtime_in_minutes <= 120 ", "%#{duration}%")
+      else
+        self.where("runtime_in_minutes > 120 ", "%#{duration}%")
+      end       
+  end
+
+  def self.by_title(title)
+    self.where("title like ?", "%#{title}%")
+  end
+
+  def self.by_director(director)
+    self.where("director like? ", "%#{director}%")
+  end
     
 
 
