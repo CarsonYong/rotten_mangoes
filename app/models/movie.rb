@@ -24,8 +24,11 @@ class Movie < ActiveRecord::Base
   end
 
   # scope :by_duration, lambda { where("runtime_in_minutes < 90 ", "%#{duration}%") if duration == "Under 90 minutes"}
-  # scope :by_duration, -> duration { where("runtime_in_minutes >= 90 AND runtime_in_minutes <= 120 ", "%#{duration}%") if duration == "Under 90 minutes"}
-scope :by_duration, lambda { |duration| if duration == "Under 90 minutes" then where("runtime_in_minutes < 90 ", "%#{duration}%") elsif duration == "Between 90 and 120 minutes" then where("runtime_in_minutes >= 90 AND runtime_in_minutes <= 120 ", "%#{duration}%") else where("runtime_in_minutes > 120 ", "%#{duration}%")end }
+   # scope :by_duration, -> duration {
+   #  where("runtime_in_minutes > duration or runtime_in_minutes <= 120 ", "%#{duration}%") if duration == "Under 90 minutes"}
+   scope :by_duration, lambda {|start, finish| where("runtime_in_minutes >= ? AND runtime_in_minutes <= ?", start, finish)}
+  #scope :by_duration, lambda { |duration| if duration == "Under 90 minutes" then where("runtime_in_minutes < 90 ", "%#{duration}%") elsif duration == "Between 90 and 120 minutes" then where("runtime_in_minutes >= 90 AND runtime_in_minutes <= 120 ", "%#{duration}%") else where("runtime_in_minutes > 120 ", "%#{duration}%")end }
+
 
   # def self.by_duration(duration)
   #   if duration == "Under 90 minutes"
