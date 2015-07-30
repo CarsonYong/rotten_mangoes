@@ -13,6 +13,8 @@ class Movie < ActiveRecord::Base
 
 
 
+
+
   def review_average
     if reviews.size == 0
        0
@@ -21,23 +23,31 @@ class Movie < ActiveRecord::Base
     end
   end
 
-  def self.by_duration(duration)
-    if duration == "Under 90 minutes"
-        self.where("runtime_in_minutes < 90 ", "%#{duration}%")
-      elsif duration == "Between 90 and 120 minutes"
-        where("runtime_in_minutes >= 90 AND runtime_in_minutes <= 120 ", "%#{duration}%")
-      else
-        self.where("runtime_in_minutes > 120 ", "%#{duration}%")
-      end       
-  end
+  # scope :by_duration, lambda { where("runtime_in_minutes < 90 ", "%#{duration}%") if duration == "Under 90 minutes"}
+  # scope :by_duration, -> duration { where("runtime_in_minutes >= 90 AND runtime_in_minutes <= 120 ", "%#{duration}%") if duration == "Under 90 minutes"}
+scope :by_duration, lambda { |duration| if duration == "Under 90 minutes" then where("runtime_in_minutes < 90 ", "%#{duration}%") elsif duration == "Between 90 and 120 minutes" then where("runtime_in_minutes >= 90 AND runtime_in_minutes <= 120 ", "%#{duration}%") else where("runtime_in_minutes > 120 ", "%#{duration}%")end }
 
-  def self.by_title(title)
-    self.where("title like ?", "%#{title}%")
-  end
+  # def self.by_duration(duration)
+  #   if duration == "Under 90 minutes"
+  #       self.where("runtime_in_minutes < 90 ", "%#{duration}%")
+  #     elsif duration == "Between 90 and 120 minutes"
+  #       where("runtime_in_minutes >= 90 AND runtime_in_minutes <= 120 ", "%#{duration}%")
+  #     else
+  #       self.where("runtime_in_minutes > 120 ", "%#{duration}%")
+  #     end       
+  # end
 
-  def self.by_director(director)
-    self.where("director like? ", "%#{director}%")
-  end
+  scope :by_title, ->(title) { where("title like ?", "%#{title}%") }
+
+  # def self.by_title(title)
+  #   self.where("title like ?", "%#{title}%")
+  # end
+
+
+  scope :by_director, ->(director) { where("director like? ", "%#{director}%") }
+  # def self.by_director(director)
+  #   self.where("director like? ", "%#{director}%")
+  # end
     
 
 
