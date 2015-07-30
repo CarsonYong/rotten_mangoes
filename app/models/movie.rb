@@ -36,15 +36,18 @@ scope :by_duration, lambda { |duration| if duration == "Under 90 minutes" then w
   #       self.where("runtime_in_minutes > 120 ", "%#{duration}%")
   #     end       
   # end
+scope :by_search, lambda {|search| 
+    where("title LIKE ? or director LIKE ?", "%#{search}%" , "%#{search}%")
+}
 
-  scope :by_title, ->(title) { where("title like ?", "%#{title}%") }
+  # scope :by_title, ->(search) { where("title like ?", "%#{title}%") }
 
-  # def self.by_title(title)
-  #   self.where("title like ?", "%#{title}%")
-  # end
+  # # def self.by_title(title)
+  # #   self.where("title like ?", "%#{title}%")
+  # # end
 
 
-  scope :by_director, ->(director) { where("director like? ", "%#{director}%") }
+  # scope :by_director, ->(search) { where("director like? ", "%#{director}%") }
   # def self.by_director(director)
   #   self.where("director like? ", "%#{director}%")
   # end
