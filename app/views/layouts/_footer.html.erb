@@ -1,5 +1,6 @@
-<footer>
-  <small>
+<footer class="row">
+  <div class="small-12 small-centered medium-8 medium-centered large-5 large-centered columns text-center">
+
     <% if current_user %>
       Signed in as <%= current_user.full_name %> (<%= link_to "Log out", session_path("current"), method: :delete %>)
       <% if current_user.admin == true %>
@@ -9,5 +10,5 @@
       <%= link_to "Log In", new_session_path %> | <%= link_to "Sign Up", new_user_path %>
     <% end %>
      
-  </small>
+</div>
 </footer>
