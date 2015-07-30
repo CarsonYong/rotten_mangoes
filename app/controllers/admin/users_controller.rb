@@ -14,9 +14,17 @@ class Admin::UsersController < ApplicationController
     @user.destroy
     if @user.destroy
       redirect_to admin_users_path
+
+        # Tell the UserMailer to send a welcome email after save
+        UserMailer.delete_email(@user).deliver_now
+ 
+        format.html { redirect_to(@user, notice: 'User was successfully deleted.') }
     else
+
+      format.html { render action: 'new' }
       redirect_to movies_path
     end
+
   end
 
 def create
