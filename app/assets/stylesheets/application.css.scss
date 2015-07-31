@@ -13,3 +13,22 @@
 
  *= require_tree .
  */
+
+img {
+  width: 315px;
+  height: 400px;
+}
+
+.card {    
+  border: 1px solid #ededed;
+    margin-bottom: 0.5rem;
+    background: #fff;
+    color: #000;
+    border-radius: 4px;
+   overflow: hidden;
+    box-shadow: 10px 10px 5px #888888;
+}
+
+.medium-4 {
+  padding-bottom: 25px;
+}
