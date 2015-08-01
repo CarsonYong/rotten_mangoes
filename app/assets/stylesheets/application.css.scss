@@ -16,7 +16,7 @@
 
 img {
   width: 315px;
-  height: 400px;
+  height: 250px;
 }
 
 .card {    
@@ -25,10 +25,14 @@ img {
     background: #fff;
     color: #000;
     border-radius: 4px;
-   overflow: hidden;
+    overflow: hidden;
     box-shadow: 10px 10px 5px #888888;
 }
 
 .medium-4 {
   padding-bottom: 25px;
+}
+
+.movie-desc p {
+  font-size: 0.5em;
 }

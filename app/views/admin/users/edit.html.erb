@@ -1,3 +1,5 @@
+<!-- Edit feature not complete yet -->
+
 <h2>Edit this user.</h2>
 
 <%= form_for [:admin, @user] do |f| %>
@@ -25,8 +27,6 @@
   <div>
     <%= f.label "Admin" %><br>
     <%= check_box_tag :admin, "true" %>
-
-
   </div>  
   <div><%= f.submit "Submit" %></div>
 <% end %>

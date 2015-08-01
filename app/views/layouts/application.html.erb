@@ -1,50 +1,71 @@
 <!DOCTYPE html>
 <html>
-<style>
- img {
-    width: 25%;
-    height: 25%;
-}
-</style>
-<head>
-  <title>RottenMangoes</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script type="text/javascript" src="assets/javascript/instafeed.min.js"></script>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "vendor/modernizr" %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<header class="row global-header">
-  <div class="small-12 small-centered medium-8 medium-centered large-5 large-centered columns">
-    <% if current_user %>
-      Signed in as <%= current_user.full_name %> (<%= link_to "Log out", session_path("current"), method: :delete %>)
-      <% if current_user.admin == true %>
-      <%=link_to "Admin", admin_users_path %>
-    <% end %> 
-    <% else %>
-      <%= link_to "Log In", new_session_path %> | <%= link_to "Sign Up", new_user_path %>
-    <% end %>  
-
-  </div>
-</header>
-
-<body>
-  <% flash.each do |key, value| %>
-    <div class="flash alert-box text-center ">
-      <%= content_tag(:div, value) %>
-      <a href="#" class= "close"> &times; </a>
-    </di>
-  <% end %>
-
-<div class="row">
-<!--   <div class="small-12 small-centered medium-8 medium-centered large-5 large-centered columns"> -->
-    <%= yield %>
-<!--   </div> -->
-</div>
+  <style>
+   img {
+      width: 25%;
+      height: 25%;
+  }
+  </style>
+  <head>
+    <title>RottenMangoes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="text/javascript" src="assets/javascript/instafeed.min.js"></script>
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+  </head>
 
 
-<%= render 'layouts/footer' %>
+  <header class="row global-header">
 
-</body>
+<!--     <nav class="topbar">
+    <section class="top-bar-section">
+      <ul class="right">
+      <% if current_user %>
+        <li>Signed in as <%= current_user.full_name %> (<%= link_to "Log out", session_path("current"), method: :delete %>)</li>
+        <% if current_user.admin == true %>
+        <li><%=link_to "Admin", admin_users_path %></li>
+        <% end %> 
+        <% else %>
+        <li><%= link_to "Log In", new_session_path %> | <%= link_to "Sign Up", new_user_path %></li>
+        <% end %> 
+
+      </ul>
+       </section>  
+    </nav> -->
+    <div class="small-12 small-centered medium-8 medium-centered large-5 large-centered columns">
+      <% if current_user %>
+        Signed in as <%= current_user.full_name %> (<%= link_to "Log out", session_path("current"), method: :delete %>)
+        <% if current_user.admin == true %>
+        <%=link_to "Admin", admin_users_path %>
+      <% end %> 
+      <% else %>
+        <%= link_to "Log In", new_session_path %> | <%= link_to "Sign Up", new_user_path %>
+      <% end %>  
+
+    </div>
+
+
+
+
+
+  </header>
+
+  <body>
+    <% flash.each do |key, value| %>
+      <div class="flash alert-box text-center ">
+        <%= content_tag(:div, value) %>
+        <a href="#" class= "close"> &times; </a>
+      </div>
+    <% end %>
+
+    <div class="row">
+      <%= yield %>
+    </div>
+
+
+    <%= render 'layouts/footer' %>
+
+  </body>
 </html>

@@ -15,10 +15,10 @@ class Admin::UsersController < ApplicationController
     if @user.destroy
       redirect_to admin_users_path
 
-        # Tell the UserMailer to send a welcome email after save
-        UserMailer.delete_email(@user).deliver_now
+      # Tell the UserMailer to send a welcome email after save
+      UserMailer.delete_email(@user).deliver_now
  
-        format.html { redirect_to(@user, notice: 'User was successfully deleted.') }
+      format.html { redirect_to(@user, notice: 'User was successfully deleted.') }
     else
 
       format.html { render action: 'new' }
@@ -29,7 +29,6 @@ class Admin::UsersController < ApplicationController
 
 def create
     @user = User.new user_params
-    #@user.admin = true
     if @user.save
       redirect_to admin_users_path
     else
